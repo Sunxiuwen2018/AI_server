@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>模拟玩具</title>
+</head>
+<body>
+<audio src="" autoplay controls loop id="player"></audio>
+<p>
+    autoplay 自动播放
+    <br>
+    controls 显示播放按钮
+    <br>
+    loop 循环播放
+    <br>
+    preload ????
+    <br>
+    src
+</p>
+</body>
+<script type="text/javascript">
+    // 连接后台websocket接收app发来的消息，然后播放
+    var ws = new WebSocket("ws://192.168.19.18:9527/toy/1234_toy");
+    ws.onmessage = function (data) {
+        console.log(data)
+        document.getElementById("player").src = "http://192.168.19.18:9999/get_music/" + data.data
+    }
+</script>
+</html>
